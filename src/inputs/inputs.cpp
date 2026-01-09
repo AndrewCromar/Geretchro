@@ -20,14 +20,15 @@ void setup_inputs()
 
 void get_inputs()
 {
-    button_up_input = digitalRead(button_up_pin);
-    button_right_input = digitalRead(button_right_pin);
-    button_down_input = digitalRead(button_down_pin);
-    button_left_input = digitalRead(button_left_pin);
+    button_up_input = !digitalRead(button_up_pin);
+    button_right_input = !digitalRead(button_right_pin);
+    button_down_input = !digitalRead(button_down_pin);
+    button_left_input = !digitalRead(button_left_pin);
 }
 
 void print_inputs()
 {
+    get_inputs();
     Serial.println(String("UP: ") + button_up_input +
                    " RIGHT: " + button_right_input +
                    " DOWN: " + button_down_input +
