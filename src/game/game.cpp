@@ -24,18 +24,62 @@ namespace Game
     GameObject player;
     GameObject ground;
 
+    GameObject objectA;
+    GameObject objectB;
+
     PlayerSettings playerSettings;
 
     void setup_player();
 
     void start()
     {
-        setup_player();
-        setup_ground();
+        // setup_player();
+        // setup_ground();
+
+        setup_test_objects();
     }
 
     void update(float dt)
     {
+    }
+
+    void setup_test_objects()
+    {
+        // same size square that overlapp a bit to test collision resolution
+
+        // Object A
+        objectA.transform->position.x = 50;
+        objectA.transform->position.y = 50;
+        Sprite* spriteA = objectA.addComponent<Sprite>();
+        spriteA->draw = [spriteA]()
+        {
+            int x = spriteA->gameObject->transform->position.x;
+            int y = spriteA->gameObject->transform->position.y;
+
+            Graphics::rect(x, y, 20, 20, Colors::RED, true);
+        };
+        Renderer::register_sprite(spriteA);
+        BoxCollider* colliderA = objectA.addComponent<BoxCollider>();
+        colliderA->width = 20;
+        colliderA->height = 20;
+        Solver::register_collider(colliderA);
+        
+        // Object B
+        objectB.transform->position.x = 60;
+        objectB.transform->position.y = 60;
+        Sprite* spriteB = objectB.addComponent<Sprite>();
+        spriteB->draw = [spriteB]()
+        {
+            int x = spriteB->gameObject->transform->position.x;
+            int y = spriteB->gameObject->transform->position.y;
+
+            Graphics::rect(x, y, 20, 20, Colors::BLUE, true);
+        };
+        Renderer::register_sprite(spriteB);
+        BoxCollider* colliderB = objectB.addComponent<BoxCollider>();
+        colliderB->width = 20;
+        colliderB->height = 20;
+        Solver::register_collider(colliderB);
     }
 
     void setup_player()
