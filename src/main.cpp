@@ -2,7 +2,7 @@
 #include "inputs/inputs.h"
 #include "graphics/graphicsengine.h"
 #include "graphics/colors.h"
-#include "game.h"
+#include "game/game.h"
 
 unsigned long prev_time = 0;
 int fps = 0;
