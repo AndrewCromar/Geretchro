@@ -45,8 +45,6 @@ namespace Game
 
     void setup_test_objects()
     {
-        // same size square that overlapp a bit to test collision resolution
-
         // Object A
         objectA.transform->position.x = 50;
         objectA.transform->position.y = 50;
