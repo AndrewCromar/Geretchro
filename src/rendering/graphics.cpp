@@ -4,11 +4,16 @@
 namespace Graphics
 {
 
+struct DisplaySettings
+{
+    int width = 160;
+    int height = 120;
+};
+
 static TFT_eSPI tft;
 static TFT_eSprite canvas = TFT_eSprite(&tft);
 
-static const int WIDTH = 160;
-static const int HEIGHT = 120;
+static const DisplaySettings displaySettings;
 
 void init()
 {
@@ -17,7 +22,7 @@ void init()
 
     canvas.setColorDepth(16);
 
-    if (canvas.createSprite(WIDTH, HEIGHT) == nullptr)
+    if (canvas.createSprite(displaySettings.width, displaySettings.height) == nullptr)
     {
         Serial.println("Graphics Error: Not enough RAM!");
     }
@@ -50,15 +55,15 @@ void present()
 {
     tft.startWrite();
 
-    for (int y = 0; y < HEIGHT; y++)
+    for (int y = 0; y < displaySettings.height; y++)
     {
-        uint16_t* linePtr = (uint16_t*)canvas.getPointer() + (y * WIDTH);
+        uint16_t* linePtr = (uint16_t*)canvas.getPointer() + (y * displaySettings.width);
 
         for (int repeat = 0; repeat < 2; repeat++)
         {
-            tft.setAddrWindow(0, (y * 2) + repeat, WIDTH * 2, 1);
+            tft.setAddrWindow(0, (y * 2) + repeat, displaySettings.width * 2, 1);
 
-            for (int x = 0; x < WIDTH; x++)
+            for (int x = 0; x < displaySettings.width; x++)
             {
                 uint16_t p = linePtr[x];
 

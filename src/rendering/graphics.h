@@ -3,6 +3,8 @@
 
 namespace Graphics
 {
+    static const DisplaySettings displaySettings;
+
     void init();
 
     void clear(uint16_t color);
