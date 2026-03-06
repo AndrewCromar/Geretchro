@@ -1,16 +1,10 @@
 #pragma once
-#include <Arduino.h>
 
 namespace Renderer
 {
     void init();
 
-    void clear(uint16_t color);
+    void register_sprite(class Sprite* sprite);
 
-    void rect(int x, int y, int w, int h, uint16_t color, bool fill);
-
-    void text(const String& text, int x, int y, uint8_t size, uint16_t color);
-
-    void present();
-    void present_scaled();
+    void draw();
 }
