@@ -1,5 +1,5 @@
 #include "game.h"
-#include "../graphics/graphicsengine.h"
+#include "../rendering/renderer.h"
 #include "../inputs/inputs.h"
 
 float player_size_x = 10;

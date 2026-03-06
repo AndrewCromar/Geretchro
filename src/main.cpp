@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "inputs/inputs.h"
-#include "graphics/graphicsengine.h"
-#include "graphics/colors.h"
+#include "rendering/renderer.h"
+#include "rendering/colors.h"
 #include "game/game.h"
 
 unsigned long prev_time = 0;

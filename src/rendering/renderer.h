@@ -1,5 +1,5 @@
-#ifndef GRAPHICSENGINE_H
-#define GRAPHICSENGINE_H
+#ifndef RENDERER_H
+#define RENDERER_H
 
 #include <Arduino.h>
 #include <TFT_eSPI.h>
