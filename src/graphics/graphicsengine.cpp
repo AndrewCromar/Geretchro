@@ -21,7 +21,7 @@ void setup_graphics()
     canvas.setTextDatum(TL_DATUM);
 }
 
-void clear_screen(uint16_t color) 
+void clear_screen(uint16_t color)
 {
     canvas.fillSprite(color);
 }
@@ -56,7 +56,7 @@ void render()
     canvas.pushSprite(0, 0);
 }
 
-void renderscaled()
+void render_scaled()
 {
     tft.startWrite();
 

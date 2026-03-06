@@ -14,6 +14,6 @@ void rect(int x, int y, int w, int h, uint16_t color, bool fill = true);
 void text(String text, int x, int y, uint8_t size = 1, uint16_t color = G_WHITE);
 void texttft(String text, int x, int y, uint8_t size = 1, uint16_t color = G_WHITE);
 void render();
-void renderscaled();
+void render_scaled();
 
 #endif
