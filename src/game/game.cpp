@@ -1,103 +1,97 @@
+#include <Arduino.h>
+#include "core/gameObject.h"
 #include "game.h"
-#include "../rendering/renderer.h"
-#include "../inputs/inputs.h"
+#include "inputSystem/inputSystem.h"
+#include "physics/solver.h"
+#include "physics/components/boxCollider.h"
+#include "time/time.h"
+#include "rendering/components/sprite.h"
+#include "rendering/renderer.h"
+#include "rendering/graphics.h"
+#include "rendering/colors.h"
 
-float player_size_x = 10;
-float player_size_y = 10;
-
-float player_x = 80;
-float player_y = 60;
-float speed = 50.0f;
-
-float jump_force = 20;
-
-float ground_friction = 0.9f;
-float air_friction = 0.99f;
-
-float player_velocity_x = 0;
-float player_velocity_y = 0;
-
-float gravity = 9.81f;
-float gravity_multiplier = 2.5f;
-
-int screen_size_x = 160;
-int screen_size_y = 120;
-
-bool is_grounded = false;
-
-void draw_player() {
-    rect((int)player_x, (int)player_y, player_size_x, player_size_y, G_WHITE, true);
-
-    rect((int)player_x + 2, (int)player_y + 2, 2, 2, G_BLUE, true);
-    rect((int)player_x + 6, (int)player_y + 2, 2, 2, G_BLUE, true);
-
-    rect((int)player_x + 2, (int)player_y + 6, 6, 2, G_RED, true);
-}
-
-void draw_ground() {
-    rect(0, screen_size_y - 1, screen_size_x, 1, G_GREEN, true);
-}
-
-void apply_gravity(float deltaTime)
+namespace Game
 {
-    player_velocity_y += gravity * gravity_multiplier * deltaTime;
-}
-
-void  clamp_player_position_to_screen()
-{
-    if (player_x < 0) 
+    struct PlayerSettings
     {
-        player_velocity_x = 0;
-        player_x = 0;
-    }
-    if (player_x > screen_size_x - 10)
+        float speed = 50;
+        float jump_force = 20;
+
+        int width = 10;
+        int height = 10;
+    };
+
+    GameObject player;
+    GameObject ground;
+
+    PlayerSettings playerSettings;
+
+    void setup_player();
+
+    void start()
     {
-        player_velocity_x = 0;
-        player_x = screen_size_x - 10;
+        setup_player();
+        setup_ground();
     }
-    if (player_y < 0)
+
+    void update(float dt)
     {
-        player_velocity_y = 0;
-        player_y = 0;
     }
-    if (player_y > screen_size_y - 10)
+
+    void setup_player()
     {
-        player_velocity_y = 0;
-        player_y = screen_size_y - 10;
+        // Position
+        player.transform->position.x = 80;
+        player.transform->position.y = 60;
+
+        // Sprite
+        Sprite* sprite = player.addComponent<Sprite>();
+
+        sprite->draw = [sprite]()
+        {
+            int x = sprite->gameObject->transform->position.x;
+            int y = sprite->gameObject->transform->position.y;
+
+            Graphics::rect(x, y, 10, 10, Colors::WHITE, true);
+
+            Graphics::rect(x + 2, y + 2, 2, 2, Colors::BLUE, true);
+            Graphics::rect(x + 6, y + 2, 2, 2, Colors::BLUE, true);
+
+            Graphics::rect(x + 2, y + 6, 6, 2, Colors::RED, true);
+        };
+
+        Renderer::register_sprite(sprite);
+
+        // Collider
+        BoxCollider* collider = player.addComponent<BoxCollider>();
+        collider->width = playerSettings.width;
+        collider->height = playerSettings.height;
+
+        Solver::register_collider(collider);
     }
-}
 
-bool check_player_grounded()
-{
-    return player_y >= screen_size_y - player_size_y - 1;
-}
-
-void apply_friction()
-{
-    if (is_grounded)
+    void setup_ground()
     {
-        player_velocity_x *= ground_friction;
+        // Position
+        ground.transform->position.x = 0;
+        ground.transform->position.y = Graphics::displaySettings.height - 1;
+
+        // Sprite
+        Sprite* sprite = ground.addComponent<Sprite>();
+        sprite->draw = [sprite]()
+        {
+            Transform::Position position = sprite->gameObject->transform->position;
+
+            Graphics::rect(0, position.x, position.y, 1, Colors::GREEN, true);
+        };
+
+        Renderer::register_sprite(sprite);
+
+        // Collider
+        BoxCollider* collider = ground.addComponent<BoxCollider>();
+        collider->width = Graphics::displaySettings.width;
+        collider->height = 1;
+        
+        Solver::register_collider(collider);
     }
-    else
-    {
-        player_velocity_x *= air_friction;
-    }
-}
-
-void update(float deltaTime) {
-    if (button_up_input && is_grounded) player_velocity_y = -jump_force;
-    // if (button_down_input)              player_velocity_y += speed * deltaTime;
-    if (button_left_input)              player_velocity_x -= speed * deltaTime;
-    if (button_right_input)             player_velocity_x += speed * deltaTime;
-
-    apply_gravity(deltaTime);
-    clamp_player_position_to_screen();
-    is_grounded = check_player_grounded();
-    apply_friction();
-
-    player_x += player_velocity_x * deltaTime;
-    player_y += player_velocity_y * deltaTime;
-
-    draw_player();
-    draw_ground();
 }

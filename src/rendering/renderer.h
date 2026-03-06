@@ -1,19 +1,10 @@
-#ifndef RENDERER_H
-#define RENDERER_H
+#pragma once
 
-#include <Arduino.h>
-#include <TFT_eSPI.h>
-#include "colors.h"
+namespace Renderer
+{
+    void init();
 
-extern TFT_eSPI tft;
-extern TFT_eSprite canvas;
+    void register_sprite(class Sprite* sprite);
 
-void setup_graphics();
-void clear_screen(uint16_t color = G_BLACK);
-void rect(int x, int y, int w, int h, uint16_t color, bool fill = true);
-void text(String text, int x, int y, uint8_t size = 1, uint16_t color = G_WHITE);
-void texttft(String text, int x, int y, uint8_t size = 1, uint16_t color = G_WHITE);
-void render();
-void render_scaled();
-
-#endif
+    void draw();
+}

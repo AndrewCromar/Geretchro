@@ -1,8 +1,7 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
-#include <Arduino.h>
-
-void update(float deltaTime);
-
-#endif
+namespace Game
+{
+    void start();
+    void update(float dt);
+}

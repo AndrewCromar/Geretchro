@@ -3,12 +3,15 @@
 
 #include <Arduino.h>
 
-#define G_BLACK   0x0000
-#define G_WHITE   0xFFFF
-#define G_RED     0xF800
-#define G_GREEN   0x001F
-#define G_BLUE    0x07E0
-#define G_YELLOW  0xF81F
-#define G_PURPLE  0xFFE0
+namespace Colors
+{
+    constexpr uint16_t BLACK  = 0x0000;
+    constexpr uint16_t WHITE  = 0xFFFF;
+    constexpr uint16_t RED    = 0xF800;
+    constexpr uint16_t GREEN  = 0x001F;
+    constexpr uint16_t BLUE   = 0x07E0;
+    constexpr uint16_t YELLOW = 0xF81F;
+    constexpr uint16_t PURPLE = 0xFFE0;
+}
 
 #endif
