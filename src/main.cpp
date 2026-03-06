@@ -2,6 +2,7 @@
 #include "inputSystem/inputSystem.h"
 #include "game/game.h"
 #include "time/time.h"
+#include "physics/solver.h"
 #include "rendering/renderer.h"
 #include "rendering/graphics.h"
 #include "rendering/colors.h"
@@ -17,8 +18,10 @@ void loop() {
   Time::update();
   InputSystem::update();
   Graphics::clear(Colors::BLACK);
-
+  
   Game::update(Time::deltaTime());
+
+  Solver::step();
 
   Renderer::draw();
 
