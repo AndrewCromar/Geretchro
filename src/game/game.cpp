@@ -9,7 +9,8 @@ namespace Game
 
     void start()
     {
-
+        player.transform->x = 0;
+        player.transform->y = 0;
     }
 
     void update(float dt)

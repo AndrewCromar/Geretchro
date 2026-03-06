@@ -2,10 +2,18 @@
 
 #include <vector>
 #include "component.h"
+#include "transform.h"
 
 class GameObject
 {
 public:
+
+    Transform* transform;
+
+    GameObject()
+    {
+        transform = addComponent<Transform>();
+    }
 
     template <typename T>
     T* addComponent()
