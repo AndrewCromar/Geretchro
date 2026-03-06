@@ -14,5 +14,5 @@ void loop() {
   Time::update();
   InputSystem::update();
 
-  Game::update();
+  Game::update(Time::deltaTime());
 }
