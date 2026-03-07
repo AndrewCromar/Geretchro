@@ -20,6 +20,10 @@ struct Vector2
     float y;
 };
 
+void solve_collisions();
+Vector2 get_bounding_box_overlap(const Collider::BoundingBox& a, const Collider::BoundingBox& b);
+void move_object(Vector2 overlap, Collider* colA, Collider* colB);
+
 void step()
 {
     solve_collisions();

@@ -3,17 +3,10 @@
 
 namespace Graphics
 {
-
-struct DisplaySettings
-{
-    int width = 160;
-    int height = 120;
-};
-
 static TFT_eSPI tft;
 static TFT_eSprite canvas = TFT_eSprite(&tft);
 
-static const DisplaySettings displaySettings;
+const DisplaySettings displaySettings = {160, 120};
 
 void init()
 {

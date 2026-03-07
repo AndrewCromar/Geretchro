@@ -30,6 +30,8 @@ namespace Game
     PlayerSettings playerSettings;
 
     void setup_player();
+    void setup_ground();
+    void setup_test_objects();
 
     void start()
     {
@@ -49,7 +51,7 @@ namespace Game
         objectA.transform->position.x = 50;
         objectA.transform->position.y = 50;
         Sprite* spriteA = objectA.addComponent<Sprite>();
-        spriteA->draw = [spriteA]()
+        spriteA->drawFunction = [spriteA]()
         {
             int x = spriteA->gameObject->transform->position.x;
             int y = spriteA->gameObject->transform->position.y;
@@ -66,7 +68,7 @@ namespace Game
         objectB.transform->position.x = 60;
         objectB.transform->position.y = 60;
         Sprite* spriteB = objectB.addComponent<Sprite>();
-        spriteB->draw = [spriteB]()
+        spriteB->drawFunction = [spriteB]()
         {
             int x = spriteB->gameObject->transform->position.x;
             int y = spriteB->gameObject->transform->position.y;
@@ -89,7 +91,7 @@ namespace Game
         // Sprite
         Sprite* sprite = player.addComponent<Sprite>();
 
-        sprite->draw = [sprite]()
+        sprite->drawFunction = [sprite]()
         {
             int x = sprite->gameObject->transform->position.x;
             int y = sprite->gameObject->transform->position.y;
@@ -120,7 +122,7 @@ namespace Game
 
         // Sprite
         Sprite* sprite = ground.addComponent<Sprite>();
-        sprite->draw = [sprite]()
+        sprite->drawFunction = [sprite]()
         {
             Transform::Position position = sprite->gameObject->transform->position;
 

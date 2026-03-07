@@ -41,13 +41,10 @@ public:
     {
         for (Component* c : components)
         {
-            Sprite* sprite = dynamic_cast<Sprite*>(c);
-
-            if (sprite && sprite->draw)
-                sprite->draw();
+            c->draw();
         }
     }
-
+    
 private:
     std::vector<Component*> components;
 };

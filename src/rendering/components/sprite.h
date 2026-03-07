@@ -6,5 +6,11 @@
 class Sprite : public Component
 {
 public:
-    std::function<void()> draw;
+    std::function<void()> drawFunction;
+
+    void draw() override
+    {
+        if (drawFunction)
+            drawFunction();
+    }
 };
