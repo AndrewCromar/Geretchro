@@ -1,16 +1,10 @@
 #pragma once
 
 #include "core/component.h"
+#include "core/math/vectors.h"
 
 class Transform : public Component
 {
 public:
-
-    struct Position
-    {
-        float x = 0;
-        float y = 0;
-    };
-
-    Position position;
+    Math::Vector2 position;
 };

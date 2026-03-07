@@ -1,6 +1,5 @@
 #include "renderer.h"
 #include "rendering/components/sprite.h"
-
 #include <vector>
 
 namespace Renderer
@@ -8,7 +7,7 @@ namespace Renderer
 
 static std::vector<::Sprite*> sprites;
 
-void register_sprite(::Sprite* sprite)
+void registerSprite(::Sprite* sprite)
 {
     sprites.push_back(sprite);
 }

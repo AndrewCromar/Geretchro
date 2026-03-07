@@ -6,7 +6,7 @@ namespace Solver
 {
     void init();
 
-    void register_collider(class Collider* collider);
+    void registerCollider(class Collider* collider);
 
     void step();
 }

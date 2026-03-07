@@ -29,16 +29,16 @@ namespace Game
 
     PlayerSettings playerSettings;
 
-    void setup_player();
-    void setup_ground();
-    void setup_test_objects();
+    void setupPlayer();
+    void setupGround();
+    void setupTestObjects();
 
     void start()
     {
-        // setup_player();
-        // setup_ground();
+        // setupPlayer();
+        // setupGround();
 
-        setup_test_objects();
+        setupTestObjects();
     }
 
     void update(float dt)
@@ -57,7 +57,7 @@ namespace Game
         }
     }
 
-    void setup_test_objects()
+    void setupTestObjects()
     {
         // Object A
         objectA.transform->position.x = 50;
@@ -70,11 +70,11 @@ namespace Game
 
             Graphics::rect(x, y, 20, 20, Colors::RED, true);
         };
-        Renderer::register_sprite(spriteA);
+        Renderer::registerSprite(spriteA);
         BoxCollider* colliderA = objectA.addComponent<BoxCollider>();
         colliderA->width = 20;
         colliderA->height = 20;
-        Solver::register_collider(colliderA);
+        Solver::registerCollider(colliderA);
         
         // Object B
         objectB.transform->position.x = 60;
@@ -87,14 +87,14 @@ namespace Game
 
             Graphics::rect(x, y, 20, 20, Colors::BLUE, true);
         };
-        Renderer::register_sprite(spriteB);
+        Renderer::registerSprite(spriteB);
         BoxCollider* colliderB = objectB.addComponent<BoxCollider>();
         colliderB->width = 20;
         colliderB->height = 20;
-        Solver::register_collider(colliderB);
+        Solver::registerCollider(colliderB);
     }
 
-    // void setup_player()
+    // void setupPlayer()
     // {
     //     // Position
     //     player.transform->position.x = 80;
@@ -116,17 +116,17 @@ namespace Game
     //         Graphics::rect(x + 2, y + 6, 6, 2, Colors::RED, true);
     //     };
 
-    //     Renderer::register_sprite(sprite);
+    //     Renderer::registerSprite(sprite);
 
     //     // Collider
     //     BoxCollider* collider = player.addComponent<BoxCollider>();
     //     collider->width = playerSettings.width;
     //     collider->height = playerSettings.height;
 
-    //     Solver::register_collider(collider);
+    //     Solver::registerCollider(collider);
     // }
 
-    // void setup_ground()
+    // void setupGround()
     // {
     //     // Position
     //     ground.transform->position.x = 0;
@@ -141,13 +141,13 @@ namespace Game
     //         Graphics::rect(0, position.x, position.y, 1, Colors::GREEN, true);
     //     };
 
-    //     Renderer::register_sprite(sprite);
+    //     Renderer::registerSprite(sprite);
 
     //     // Collider
     //     BoxCollider* collider = ground.addComponent<BoxCollider>();
     //     collider->width = Graphics::displaySettings.width;
     //     collider->height = 1;
         
-    //     Solver::register_collider(collider);
+    //     Solver::registerCollider(collider);
     // }
 }
