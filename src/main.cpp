@@ -10,6 +10,7 @@
 void setup() {
   Serial.begin(9600);
 
+  Graphics::init();
   InputSystem::setup();
   Game::start();
 }

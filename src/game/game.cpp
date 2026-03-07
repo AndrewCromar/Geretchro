@@ -43,6 +43,18 @@ namespace Game
 
     void update(float dt)
     {
+        if(InputSystem::get().up){
+            objectA.transform->position.y -= 50 * dt;
+        }
+        if(InputSystem::get().down){
+            objectA.transform->position.y += 50 * dt;
+        }
+        if(InputSystem::get().left){
+            objectA.transform->position.x -= 50 * dt;
+        }
+        if(InputSystem::get().right){
+            objectA.transform->position.x += 50 * dt;
+        }
     }
 
     void setup_test_objects()
@@ -82,60 +94,60 @@ namespace Game
         Solver::register_collider(colliderB);
     }
 
-    void setup_player()
-    {
-        // Position
-        player.transform->position.x = 80;
-        player.transform->position.y = 60;
+    // void setup_player()
+    // {
+    //     // Position
+    //     player.transform->position.x = 80;
+    //     player.transform->position.y = 60;
 
-        // Sprite
-        Sprite* sprite = player.addComponent<Sprite>();
+    //     // Sprite
+    //     Sprite* sprite = player.addComponent<Sprite>();
 
-        sprite->drawFunction = [sprite]()
-        {
-            int x = sprite->gameObject->transform->position.x;
-            int y = sprite->gameObject->transform->position.y;
+    //     sprite->drawFunction = [sprite]()
+    //     {
+    //         int x = sprite->gameObject->transform->position.x;
+    //         int y = sprite->gameObject->transform->position.y;
 
-            Graphics::rect(x, y, 10, 10, Colors::WHITE, true);
+    //         Graphics::rect(x, y, 10, 10, Colors::WHITE, true);
 
-            Graphics::rect(x + 2, y + 2, 2, 2, Colors::BLUE, true);
-            Graphics::rect(x + 6, y + 2, 2, 2, Colors::BLUE, true);
+    //         Graphics::rect(x + 2, y + 2, 2, 2, Colors::BLUE, true);
+    //         Graphics::rect(x + 6, y + 2, 2, 2, Colors::BLUE, true);
 
-            Graphics::rect(x + 2, y + 6, 6, 2, Colors::RED, true);
-        };
+    //         Graphics::rect(x + 2, y + 6, 6, 2, Colors::RED, true);
+    //     };
 
-        Renderer::register_sprite(sprite);
+    //     Renderer::register_sprite(sprite);
 
-        // Collider
-        BoxCollider* collider = player.addComponent<BoxCollider>();
-        collider->width = playerSettings.width;
-        collider->height = playerSettings.height;
+    //     // Collider
+    //     BoxCollider* collider = player.addComponent<BoxCollider>();
+    //     collider->width = playerSettings.width;
+    //     collider->height = playerSettings.height;
 
-        Solver::register_collider(collider);
-    }
+    //     Solver::register_collider(collider);
+    // }
 
-    void setup_ground()
-    {
-        // Position
-        ground.transform->position.x = 0;
-        ground.transform->position.y = Graphics::displaySettings.height - 1;
+    // void setup_ground()
+    // {
+    //     // Position
+    //     ground.transform->position.x = 0;
+    //     ground.transform->position.y = Graphics::displaySettings.height - 1;
 
-        // Sprite
-        Sprite* sprite = ground.addComponent<Sprite>();
-        sprite->drawFunction = [sprite]()
-        {
-            Transform::Position position = sprite->gameObject->transform->position;
+    //     // Sprite
+    //     Sprite* sprite = ground.addComponent<Sprite>();
+    //     sprite->drawFunction = [sprite]()
+    //     {
+    //         Transform::Position position = sprite->gameObject->transform->position;
 
-            Graphics::rect(0, position.x, position.y, 1, Colors::GREEN, true);
-        };
+    //         Graphics::rect(0, position.x, position.y, 1, Colors::GREEN, true);
+    //     };
 
-        Renderer::register_sprite(sprite);
+    //     Renderer::register_sprite(sprite);
 
-        // Collider
-        BoxCollider* collider = ground.addComponent<BoxCollider>();
-        collider->width = Graphics::displaySettings.width;
-        collider->height = 1;
+    //     // Collider
+    //     BoxCollider* collider = ground.addComponent<BoxCollider>();
+    //     collider->width = Graphics::displaySettings.width;
+    //     collider->height = 1;
         
-        Solver::register_collider(collider);
-    }
+    //     Solver::register_collider(collider);
+    // }
 }
