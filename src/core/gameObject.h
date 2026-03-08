@@ -5,11 +5,14 @@
 #include "transform.h"
 #include "rendering/components/sprite.h"
 
+class Rigidbody;
+
 class GameObject
 {
 public:
 
     Transform* transform;
+    Rigidbody* rigidbody = nullptr;
 
     GameObject()
     {

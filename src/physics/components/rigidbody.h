@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/component.h"
+#include "core/math/vectors.h"
 
 class Rigidbody : public Component
 {
@@ -11,7 +12,7 @@ public:
         Dynamic
     };
 
-    struct RidigbodySettings
+    struct RigidbodySettings
     {
         BodyType bodyType = BodyType::Dynamic;
 
@@ -19,7 +20,9 @@ public:
         float gravityScale = 1.0f;
     };
 
-    RidigbodySettings settings;
+    RigidbodySettings settings;
+    Math::Vector2 velocity;
+    bool grounded = false;
 
     virtual ~Rigidbody() = default;
 };

@@ -22,7 +22,7 @@ void loop() {
   
   Game::update(Time::deltaTime());
 
-  Solver::step();
+  Solver::step(Time::deltaTime());
 
   Renderer::draw();
 
